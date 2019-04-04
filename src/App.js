@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Route, NavLink, HashRouter } from 'react-router-dom';
+import Home from './Home';
+import Weather from './WeatherApp';
+import StarWars from './StarWarsApp';
+import TodoList from './TodoListApp';
+import About from './About';
+import 'bulma/css/bulma.css';
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <HashRouter>
+        <div className="App">
+          <ul className="header">
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/weather">Weather App</NavLink></li>
+            <li><NavLink to="/star-wars">Star Wars API App</NavLink></li>
+            <li><NavLink to="/todo-list">Todo List App</NavLink></li>
+            <li><NavLink to="/about">About</NavLink></li>
+          </ul>
+
+          <div className="container">
+            <Route exact path="/" component={Home} />
+            <Route path="/weather" component={Weather} />
+            <Route path="/star-wars" component={StarWars} />
+            <Route path="/todo-list" component={TodoList} />
+            <Route path="/about" component={About} />
+          </div>
+
+        </div>
+      </HashRouter>
     );
   }
 }
-
-export default App;
